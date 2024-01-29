@@ -100,3 +100,82 @@ int main()
  	printf("%d\n",isRealNo(str));
  	
 }
+
+
+
+# LexicalAnalyser:
+#include <stdio.h>
+#include <string.h>
+
+int array(char* a){
+    int count = 1;
+    for(int i = 1; i <= sizeof(a); i++){
+        if(a[i] == ';'){
+            count++;
+        }
+    }
+    printf("No. of lines: %d\n",count);
+}
+int word(char * a){
+    int count = 1;
+    for(int i =1; i <= sizeof(a);i++){
+        if(a[i] == ' ' || a[i] == ',' || a[i] == ';'){
+            count++;
+        }
+    }
+    printf("No. of words: %d\n",count);
+}
+int d(char * a){
+	int count = 1;
+	for(int i=1; i <= sizeof(a);i++){
+		if(a[i] == ';' || a[i] == ','){
+			count++;
+		}
+		
+	}
+	printf("No.of delimeters: %d\n",count);
+}
+int op(char * a){
+	int count  =1;
+	for(int i=1; i< sizeof(a); i++){
+		if(a[i] == '+' || a[i] == '-' || a[i] == '*' || a[i] == '/'){
+			count++;
+		}
+	}
+	printf("No. of operators is: %d\n",count);
+}
+
+int keyword(char * str ){
+	int count = 1;
+	for(int i=1 ; i<sizeof(str); i++){
+		  if(!strcmp(str , "if") || !strcmp(str, "else") || !strcmp(str, "float") || !strcmp(str, "double") || !strcmp(str, "int")){
+		  
+		  
+	
+			count++;
+		}
+	}
+	
+	printf("No. of keyword is %d\n",count);
+	
+}
+
+int main()
+{
+    int n;
+    printf("Enter the size of array: ");
+    scanf("%d",&n);
+    char arr[n];
+    for(int i = 0; i < n;i++){
+        scanf("%c",&arr[i]);
+    }
+    array(arr);
+    word(arr);
+    d(arr);
+    op(arr);
+    keyword(arr);
+
+    return 0;
+}
+
+
