@@ -178,4 +178,108 @@ int main()
     return 0;
 }
 
+//Lab Checking for recursive descent parser for String "ab$";
+#include <stdio.h>
+#include <string.h>
+
+char l[100];
+int i = 0;
+
+void S();
+
+int main()
+{
+    char s[100] = "ab$";
+    strcpy(l,s);
+    S();
+    if(l[i]=='$'){
+        printf("Success\n");
+    }else{
+        printf("Not Successfull\n");
+    }
+
+    return 0;
+}
+
+void S(){
+    if(l[i]=='a'){
+        printf("a\n");
+        i++;
+        S();
+    }else if(l[i]=='b'){
+        printf("b\n");
+        i++;
+    }
+    return;
+}
+
+//Lab Checking for recursive descent parser for String "id+id*id$"; 
+#include <stdio.h>
+#include <string.h>
+char l[100];
+int i = 0;
+
+void E();
+void EI();
+void T();
+void TI();
+void F();
+
+int main()
+{
+    char s[100] = "id+id*id$";
+    strcpy(l,s);
+    E();
+    if(l[i]=='$'){
+        printf("Success\n");
+    }else{
+        printf("Not Successfull\n");
+    }
+
+    return 0;
+}
+
+void E(){
+    T();
+    EI();
+}
+
+void EI(){
+    if (l[i]=='+'){
+        i++;
+        T();
+        EI();
+    }else{
+        return;
+    }
+}
+
+void T(){
+    F();
+    TI();
+}
+
+void TI(){
+    if (l[i]=='*'){
+        i++;
+        F();
+        TI();
+    }else{
+        return;
+    }
+}
+
+void F(){
+    if (l[i]=='('){
+        E();
+        if (l[i]==')'){
+            i++;
+        }
+    }else if(l[i]=='i'){
+        i++;
+        i++;
+    }
+}
+
+
 
